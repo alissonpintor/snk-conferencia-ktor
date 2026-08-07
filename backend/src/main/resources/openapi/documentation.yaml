@@ -351,12 +351,360 @@ paths:
   # ==========================================
   # CONFERÊNCIA E EXPEDIÇÃO
   # ==========================================
+  /api/v1/conferencia/search:
+    post:
+      tags:
+        - Conferência
+      summary: Buscar / Consultar Conferências
+      description: Consulta a View APP_SEPARACAO filtrando por checkout ou por número da conferência.
+      operationId: buscarConferencia
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuscarConferenciaRequest'
+      responses:
+        '200':
+          description: Conferências encontradas.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConferenciaResponse'
+        '400':
+          description: Parâmetros de busca inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/iniciar:
+    post:
+      tags:
+        - Conferência
+      summary: Iniciar Conferência por Checkout
+      description: Inicia o processo de conferência no WMS via MgeWmsSP.buscaConferenciaPorPedido para o endereço de checkout.
+      operationId: iniciarConferencia
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IniciarConferenciaRequest'
+      responses:
+        '200':
+          description: Conferência iniciada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IniciarConferenciaResponse'
+        '400':
+          description: Checkout inválido ou checkout ocupado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/pendentes:
+    get:
+      tags:
+        - Conferência
+      summary: Buscar Tarefas Pendentes do Conferente
+      description: Retorna as tarefas em andamento associadas ao conferente ativo.
+      operationId: buscarTarefasPendentes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Lista de tarefas pendentes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConferenciaPendenteResponse'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/itens:
+    post:
+      tags:
+        - Conferência
+      summary: Buscar Itens da Conferência
+      description: Lista os produtos a conferir na View APP_CONFERENCIA_ITENS.
+      operationId: buscarItensConferencia
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuscarItensConferenciaRequest'
+      responses:
+        '200':
+          description: Itens da conferência consultados.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemConferenciaResponse'
+        '400':
+          description: Número de conferência inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/info:
+    post:
+      tags:
+        - Conferência
+      summary: Obter Informações do Produto bipado
+      description: Retorna descrição e complementos do produto via MgeWmsSP.buscaInfoProduto.
+      operationId: obterInfoProduto
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InfoProdutoRequest'
+      responses:
+        '200':
+          description: Detalhes do produto retornados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoProdutoResponse'
+        '400':
+          description: Código de barras ou conferência inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/registrar:
+    post:
+      tags:
+        - Conferência
+      summary: Registrar Bipagem de Item
+      description: Registra a quantidade bipada do produto via MgeWmsSP.insereItemConferidoColetor.
+      operationId: registrarItemConferido
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrarItemConferidoRequest'
+      responses:
+        '200':
+          description: Item registrado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrarItemResponse'
+        '400':
+          description: Produto incorreto, quantidade excedida ou erro de bipagem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/itens/saldo:
+    post:
+      tags:
+        - Conferência
+      summary: Atualizar Saldo do Item Conferido
+      description: Consulta saldo conferido e sequências ativas em APP_CONFERENCIA_ITENS_SALDO.
+      operationId: atualizarSaldoItem
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtualizarSaldoRequest'
+      responses:
+        '200':
+          description: Saldo do item atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaldoItemResponse'
+        '400':
+          description: Número de conferência inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/remover-itens:
+    post:
+      tags:
+        - Conferência
+      summary: Remover Itens / Recontar
+      description: Limpa sequências conferidas no coletor via MgeWmsSP.removeItensConferidosColetor.
+      operationId: removerItens
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoverItensRequest'
+      responses:
+        '200':
+          description: Itens removidos com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenciaActionResponse'
+        '400':
+          description: Erro ao remover itens da conferência.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/finalizar:
+    post:
+      tags:
+        - Conferência
+      summary: Finalizar Conferência
+      description: Encerra o processo de conferência via MgeWmsSP.produtosConferidos e valida se há divergências.
+      operationId: finalizarConferencia
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinalizarConferenciaRequest'
+      responses:
+        '200':
+          description: Conferência finalizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalizarConferenciaResponse'
+        '400':
+          description: Divergência encontrada ou erro de encerramento.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/volumes:
+    post:
+      tags:
+        - Conferência
+      summary: Registrar Volumes da Conferência
+      description: Registra a quantidade de volumes via MgeWmsSP.registraEtiquetasVolume.
+      operationId: registrarVolumes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrarVolumesRequest'
+      responses:
+        '200':
+          description: Volumes registrados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenciaActionResponse'
+        '400':
+          description: Quantidade ou conferência inválidas.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
   /api/v1/conferencia/doca:
     post:
       tags:
         - Conferência
       summary: Enviar Conferência para a Doca
-      description: Direciona a conferência/separação para a doca de expedição via MgeWmsSP.enviaConferenciaPedidosParaDoca.
+      description: Direciona a conferência/separação para a doca de expedição via MgeWmsSP.liberaCheckoutDoca.
       operationId: enviarParaDoca
       security:
         - BearerAuth: []
@@ -391,7 +739,7 @@ paths:
       tags:
         - Conferência
       summary: Cancelar Conferência
-      description: Cancela a conferência ativa da separação no ERP via MgeWmsSP.cancelaConferencia.
+      description: Cancela a conferência ativa da separação no ERP via MgeWmsSP.cancelaTarefa.
       operationId: cancelarConferencia
       security:
         - BearerAuth: []
@@ -426,7 +774,7 @@ paths:
       tags:
         - Conferência
       summary: Solicitar Impressão de Etiquetas de Volumes
-      description: Valida a existência de etiquetas de volume na tabela TGWREV e aceita a solicitação de impressão.
+      description: Gera o documento HTML formatado com os cartões e códigos de barras das etiquetas de volume gravadas na tabela TGWREV.
       operationId: imprimirVolumes
       security:
         - BearerAuth: []
@@ -438,11 +786,12 @@ paths:
               $ref: '#/components/schemas/ImprimirVolumesRequest'
       responses:
         '200':
-          description: Solicitação de impressão realizada com sucesso.
+          description: Documento HTML com etiquetas de volume gerado com sucesso.
           content:
-            application/json:
+            text/html:
               schema:
-                $ref: '#/components/schemas/ConferenciaActionResponse'
+                type: string
+                example: "<!DOCTYPE html><html><body>Etiquetas</body></html>"
         '400':
           description: Número único ou número de separação inválidos.
           content:
@@ -790,11 +1139,329 @@ components:
           type: string
           example: Volumes gerados com sucesso.
 
+    BuscarConferenciaRequest:
+      type: object
+      properties:
+        checkout:
+          type: string
+          example: "02.904.258"
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+
+    ConferenciaResponse:
+      type: object
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        nroUnico:
+          type: integer
+          format: int64
+          example: 2001
+        nroNota:
+          type: integer
+          format: int64
+          example: 3001
+        ordemCarga:
+          type: integer
+          format: int64
+          example: 88
+        checkout:
+          type: string
+          example: "02.904.258"
+        codDoca:
+          type: integer
+          format: int64
+          example: 5
+        descrDoca:
+          type: string
+          example: DOCA 01
+
+    IniciarConferenciaRequest:
+      type: object
+      required:
+        - checkout
+      properties:
+        checkout:
+          type: string
+          example: "02.904.258"
+
+    IniciarConferenciaResponse:
+      type: object
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        tipoConferencia:
+          type: string
+          example: "E"
+        sepAgrupada:
+          type: string
+          example: "N"
+        volumeContinuo:
+          type: string
+          example: "N"
+        impEtiquetaFechVol:
+          type: string
+          example: "S"
+
+    ConferenciaPendenteResponse:
+      type: object
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        checkout:
+          type: string
+          example: "02.904.258"
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+
+    BuscarItensConferenciaRequest:
+      type: object
+      required:
+        - nroConferencia
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        codProduto:
+          type: integer
+          format: int64
+          example: 1001
+        codBarra:
+          type: string
+          example: "7891234567890"
+
+    ItemConferenciaResponse:
+      type: object
+      properties:
+        codProduto:
+          type: integer
+          format: int64
+          example: 1001
+        descrProduto:
+          type: string
+          example: PRODUTO TESTE
+        codBarra:
+          type: string
+          example: "7891234567890"
+        quantidade:
+          type: number
+          format: double
+          example: 10.0
+        qtdadeConferida:
+          type: number
+          format: double
+          example: 8.0
+        qtdadeAvariada:
+          type: number
+          format: double
+          example: 0.0
+        sequencias:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3]
+        possuiDivergencia:
+          type: boolean
+          example: false
+
+    InfoProdutoRequest:
+      type: object
+      required:
+        - nroConferencia
+        - codBarra
+        - quantidade
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        codBarra:
+          type: string
+          example: "7891234567890"
+        quantidade:
+          type: number
+          format: double
+          example: 1.0
+
+    InfoProdutoResponse:
+      type: object
+      properties:
+        codProduto:
+          type: integer
+          format: int64
+          example: 1001
+        descrProduto:
+          type: string
+          example: PRODUTO TESTE
+        complemento:
+          type: string
+          example: CX COM 12
+        pesoBruto:
+          type: number
+          format: double
+          example: 0.5
+
+    RegistrarItemConferidoRequest:
+      type: object
+      required:
+        - nroConferencia
+        - codBarra
+        - quantidade
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        codBarra:
+          type: string
+          example: "7891234567890"
+        quantidade:
+          type: number
+          format: double
+          example: 1.0
+        qtdadeAvariada:
+          type: number
+          format: double
+          example: 0.0
+        nroVolume:
+          type: integer
+          example: 1
+        codCaixa:
+          type: string
+          example: "CX01"
+        modoEdicao:
+          type: string
+          example: "N"
+        volumeContinuo:
+          type: string
+          example: "N"
+
+    RegistrarItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "OK"
+        mensagem:
+          type: string
+          example: Item conferido registrado com sucesso.
+
+    AtualizarSaldoRequest:
+      type: object
+      required:
+        - nroConferencia
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        codBarra:
+          type: string
+          example: "7891234567890"
+        codProduto:
+          type: integer
+          format: int64
+          example: 1001
+
+    SaldoItemResponse:
+      type: object
+      properties:
+        codProduto:
+          type: integer
+          format: int64
+          example: 1001
+        qtdadeConferida:
+          type: number
+          format: double
+          example: 8.0
+        sequencias:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3]
+        qtdadeAvariada:
+          type: number
+          format: double
+          example: 0.0
+        possuiDivergencia:
+          type: boolean
+          example: false
+
+    RemoverItensRequest:
+      type: object
+      required:
+        - nroConferencia
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        sequencias:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2]
+
+    FinalizarConferenciaRequest:
+      type: object
+      required:
+        - nroConferencia
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+
+    FinalizarConferenciaResponse:
+      type: object
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        status:
+          type: string
+          example: "1"
+        mensagem:
+          type: string
+          example: Conferência finalizada com sucesso.
+
+    RegistrarVolumesRequest:
+      type: object
+      required:
+        - nroConferencia
+        - quantidade
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 979160
+        quantidade:
+          type: integer
+          example: 3
+
     EnviarDocaRequest:
       type: object
       required:
         - nroConferencia
-        - nroNota
       properties:
         nroConferencia:
           type: integer
@@ -845,4 +1512,4 @@ components:
           example: "1"
         mensagem:
           type: string
-          example: Conferência enviada para a doca com sucesso.
+          example: Operação realizada com sucesso.

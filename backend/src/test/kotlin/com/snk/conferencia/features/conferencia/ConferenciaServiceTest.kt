@@ -62,7 +62,7 @@ class ConferenciaServiceTest {
         val resultado = service.enviarParaDoca("https://teste.stoky.com.br", "session-123", "15", request)
 
         assertEquals("1", resultado.status)
-        assertEquals("MgeWmsSP.enviaConferenciaPedidosParaDoca", mockClient.lastServiceNameCalled)
+        assertEquals("MgeWmsSP.liberaCheckoutDoca", mockClient.lastServiceNameCalled)
     }
 
     @Test
@@ -100,7 +100,7 @@ class ConferenciaServiceTest {
         val resultado = service.cancelarConferencia("https://teste.stoky.com.br", "session-123", "15", request)
 
         assertEquals("1", resultado.status)
-        assertEquals("MgeWmsSP.cancelaConferencia", mockClient.lastServiceNameCalled)
+        assertEquals("MgeWmsSP.cancelaTarefa", mockClient.lastServiceNameCalled)
     }
 
     @Test
@@ -137,7 +137,7 @@ class ConferenciaServiceTest {
 
         val resultado = service.imprimirVolumes("https://teste.stoky.com.br", "session-123", request)
 
-        assertEquals("1", resultado.status)
+        assertTrue(resultado.contains("REV123"))
         assertTrue(mockClient.lastSqlExecuted!!.contains("TGWREV WHERE NUSEPARACAO = 1001"))
     }
 

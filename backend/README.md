@@ -142,6 +142,16 @@ Os relatórios HTML detalhados serão gerados em `backend/build/reports/tests/te
 - `POST /api/v1/separacoes/{nroSeparacao}/volumes`: Dispara o procedimento oficial de geração de etiquetas de volume (`MgeWmsSP.gerarEtiquetasVolume`).
 
 ### 🚢 Conferência e Expedição (`/api/v1/conferencia`)
-- `POST /api/v1/conferencia/doca`: Direciona a conferência/separação para a doca (`MgeWmsSP.enviaConferenciaPedidosParaDoca`).
-- `POST /api/v1/conferencia/cancelar`: Cancela a conferência ativa (`MgeWmsSP.cancelaConferencia`).
-- `POST /api/v1/conferencia/volumes/imprimir`: Valida e aceita a solicitação de impressão de etiquetas de volume.
+- `POST /api/v1/conferencia/search`: Consulta tarefas de conferência por checkout ou número (`APP_SEPARACAO`).
+- `POST /api/v1/conferencia/iniciar`: Inicia o processo de conferência no WMS por checkout (`MgeWmsSP.buscaConferenciaPorPedido`).
+- `GET /api/v1/conferencia/pendentes`: Lista as tarefas de conferência em andamento do conferente (`APP_SEPARACAO`).
+- `POST /api/v1/conferencia/itens`: Lista os produtos pertencentes a uma conferência (`APP_CONFERENCIA_ITENS`).
+- `POST /api/v1/conferencia/info`: Obtém descrição e complementos do produto bipado (`MgeWmsSP.buscaInfoProduto`).
+- `POST /api/v1/conferencia/registrar`: Registra a bipagem e contagem do item (`MgeWmsSP.insereItemConferidoColetor`).
+- `POST /api/v1/conferencia/itens/saldo`: Consulta o saldo conferido e sequências gravadas (`APP_CONFERENCIA_ITENS_SALDO`).
+- `POST /api/v1/conferencia/remover-itens`: Remove sequências conferidas para recontagem (`MgeWmsSP.removeItensConferidosColetor`).
+- `POST /api/v1/conferencia/finalizar`: Encerra o processo de conferência validando divergências (`MgeWmsSP.produtosConferidos`).
+- `POST /api/v1/conferencia/volumes`: Registra a quantidade de volumes gerados na conferência (`MgeWmsSP.registraEtiquetasVolume`).
+- `POST /api/v1/conferencia/volumes/imprimir`: Gera documento HTML com cartões de etiquetas de volume (`TGWREV`).
+- `POST /api/v1/conferencia/doca`: Libera o checkout e direciona a conferência para a doca (`MgeWmsSP.liberaCheckoutDoca`).
+- `POST /api/v1/conferencia/cancelar`: Cancela a tarefa de conferência ativa (`MgeWmsSP.cancelaTarefa`).
