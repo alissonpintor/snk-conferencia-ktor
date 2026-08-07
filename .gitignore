@@ -1,38 +1,63 @@
-node_modules
+# Dependencies
+node_modules/
 
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
-/build
-.gradle/
+# Build & Output Directories
+.output/
+.vercel/
+.netlify/
+.wrangler/
+.svelte-kit/
 build/
+bin/
+out/
+.gradle/
 backend/.gradle/
 backend/build/
+backend/out/
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Env
+# Environment Variables & Secrets
 .env
 .env.*
 !.env.example
 !.env.test
+backend/.env
+backend/.env.*
+backend/*.env
+*.env
+.env.sentry-build-plugin
+.secrets
+secrets/
+*.pem
+*.crt
+*.key
+*.jks
+*.p12
+*.keystore
 
-# IDE & Editor
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs & Code Editors
 .idea/
 .vscode/
 *.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
 
-# Vite
+# Temporary, Logs & Scratch Files
+*.log
+logs/
+backend/logs/
+backend/*.log
+scratch/
+tasks/etiqueta_volume.pdf
+
+# Vite & Frontend Temporary Files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# Sentry Config File
-.env.sentry-build-plugin
-
-# Temporary & Log files
-*.log
