@@ -1,0 +1,38 @@
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+.gradle/
+build/
+backend/.gradle/
+backend/build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# IDE & Editor
+.idea/
+.vscode/
+*.iml
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Temporary & Log files
+*.log

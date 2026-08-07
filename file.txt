@@ -1,0 +1,738 @@
+-----------------------------------------------------------
+LOGIN 
+-----------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MobileLoginSP.login"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="login"><requestBody><NOMUSU>ALISSON</NOMUSU><INTERNO>studiowork</INTERNO><APARELHO>COLETORWMS</APARELHO><APARELHO_ID>2023120710120
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="login"><requestBody><NOMUSU>ALISSON</NOMUSU><INTERNO>studiowork</INTERNO><APARELHO>COLETORWMS</APARELHO><APARELHO_ID>20231207101200_0.303819596767426</APARELHO_ID><VERSAOCOLETOR>3.20.0b222</VERSAOCOLETOR><CODPRODUTO>30937</CODPRODUTO></requestBody></serviceRequest>
+
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscarFuncao"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_2"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscarFuncao"><requestBody><NOMUSU>ALISSON</NOMUSU><INTERNO>studiowork</INTERNO></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscarFuncao"><requestBody><NOMUSU>ALISSON</NOMUSU><INTERNO>studiowork</INTERNO></requestBody></serviceRequest>
+
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaParametrosGlobais"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_3"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaParametrosGlobais"><requestBody><idusu>OTE=</idusu></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaParametrosGlobais"><requestBody><idusu>OTE=</idusu></requestBody></serviceRequest>
+
+
+-----------------------------------------------------------
+REGISTRAR IMPRESSORA
+-----------------------------------------------------------
+Request Method: POST
+Request URI Path: /mgewms/service.sbr
+Request URI Query: serviceName=MgeWmsSP.buscarEquipamentos&mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx&outputType=json&callID=73FD81471A57B7F894F11B98CBF66E78_11
+    Request URI Query Parameter: serviceName=MgeWmsSP.buscarEquipamentos
+    Request URI Query Parameter: mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx
+    Request URI Query Parameter: outputType=json
+    Request URI Query Parameter: callID=73FD81471A57B7F894F11B98CBF66E78_11
+
+
+-----------------------------------------------------------
+CONFERENCIA
+-----------------------------------------------------------
+
+### Chamado ao clicar em conferencia de pedido no coletor
+-----------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.temItensConferidosColetor"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_9"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.temItensConferidosColetor"><requestBody><idusu>OTE=</idusu><TIPOCONF>PEDIDO</TIPOCONF></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.temItensConferidosColetor"><requestBody><idusu>OTE=</idusu><TIPOCONF>PEDIDO</TIPOCONF></requestBody></serviceRequest>
+
+### Chamado quando informado o chekcout
+-----------------------------------------------------------
+Request Method: POST
+Request URI Path: /mgewms/service.sbr
+Request URI Query: serviceName=MgeWmsSP.buscaConferenciaPorPedido&mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx&outputType=json&callID=73FD81471A57B7F894F11B98CBF66E78_6
+    Request URI Query Parameter: serviceName=MgeWmsSP.buscaConferenciaPorPedido
+    Request URI Query Parameter: mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx
+    Request URI Query Parameter: outputType=json
+    Request URI Query Parameter: callID=73FD81471A57B7F894F11B98CBF66E78_6
+Body:
+{
+    "requestBody": {
+        "idusu": {
+            "$": "OTE=\n"
+        },
+        "ENDERECO": {
+            "$": "02998573"
+        }
+    }
+}
+Response: 
+{
+    "serviceName": "MgeWmsSP.buscaConferenciaPorPedido",
+    "status": "1",
+    "pendingPrinting": "false",
+    "transactionId": "2514238E064EB3C11E58A3CA65535476",
+    "responseBody": {
+        "entity": {
+            "name": "TGWCON",
+            "linhas": {
+                "linha": {
+                    "UTILIZACONTROLE": "S",
+                    "CODEND": "67180",
+                    "DESCREND": "CHECKOUT 02.998.573",
+                    "ENDERECO": "02.998.573",
+                    "CODENDDOCA": "52",
+                    "DESCRENDDOCA": "DOCA EXPEDI��O 003",
+                    "CODUSU": "745",
+                    "NOMEUSU": "JULIANO.C",
+                    "TIPCONF": "E",
+                    "NUCONFERENCIA": "1051090",
+                    "NUMNOTA": "341144",
+                    "NUNOTA": "1834083",
+                    "NUSEPARACAO": "970882",
+                    "ORDEMCARGA": "14737",
+                    "SEPARACAO_AGRUPADA": "false",
+                    "VOLCONTINUO": "N",
+                    "IMPETIQFECHVOL": "S"
+                }
+            }
+        }
+    }
+}
+
+### Ao conferir um produto
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoProduto"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_20"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><CODBARRAS>000000050005</CODBARRAS><QUANTIDADE>15</QUANTIDADE><NUCONFER
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><CODBARRAS>000000050005</CODBARRAS><QUANTIDADE>15</QUANTIDADE><NUCONFERENCIA>979311</NUCONFERENCIA><NUNOTA>316718</NUNOTA></requestBody></serviceRequest>
+
+2) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaQtdeContadaColetor"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_21"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaQtdeContadaColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><CODBARRA>000000050005</CODBARRA><NUCONFERENCIA>979
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaQtdeContadaColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><CODBARRA>000000050005</CODBARRA><NUCONFERENCIA>979311</NUCONFERENCIA><CONTROLE> </CONTROLE></CONFERENCIA></requestBody></serviceRequest>
+
+3) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoProduto"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_22"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><VALIDARQTD>true</VALIDARQTD><considerarLeituraCorrente>true</considera
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><VALIDARQTD>true</VALIDARQTD><considerarLeituraCorrente>true</considerarLeituraCorrente><CODBARRAS>000000050005</CODBARRAS><NUCONFERENCIA>979311</NUCONFERENCIA><QUANTIDADE>15.0</QUANTIDADE><QTDAVARIA>0.0</QTDAVARIA><LOTE></LOTE></requestBody></serviceRequest>
+
+4) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.insereItemConferidoColetor"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_23"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.insereItemConferidoColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><CODBARRA>000000050005</CODBARRA><NUCONFERENCIA>
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.insereItemConferidoColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><CODBARRA>000000050005</CODBARRA><NUCONFERENCIA>979311</NUCONFERENCIA><CONTROLE> </CONTROLE><DTVALIDADE></DTVALIDADE><DTFABRICACAO></DTFABRICACAO><QUANTIDADE>15.0</QUANTIDADE><QTDAVARIA>0.0</QTDAVARIA><QTDPECAS>0</QTDPECAS><VOLCONTINUO>N</VOLCONTINUO></CONFERENCIA></requestBody></serviceRequest>
+
+### Ao finalizar a conferencia
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.temItensConferidosColetor"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_24"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.temItensConferidosColetor"><requestBody><idusu>OTE=</idusu><TIPOCONF>PEDIDO</TIPOCONF></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.temItensConferidosColetor"><requestBody><idusu>OTE=</idusu><TIPOCONF>PEDIDO</TIPOCONF></requestBody></serviceRequest>
+
+2) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoProduto"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_25"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><VALIDARQTD>true</VALIDARQTD><NUCONFERENCIA>979311</NUCONFERENCIA><idusu>OTE=</idusu></req
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><VALIDARQTD>true</VALIDARQTD><NUCONFERENCIA>979311</NUCONFERENCIA><idusu>OTE=</idusu></requestBody></serviceRequest>
+
+3) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.produtosConferidos"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_26"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.produtosConferidos"><requestBody><idusu>OTE=</idusu><nuConferencia>979311</nuConferencia><PREFERENCIANOTIFDIVFINAL>false</PREFER
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.produtosConferidos"><requestBody><idusu>OTE=</idusu><nuConferencia>979311</nuConferencia><PREFERENCIANOTIFDIVFINAL>false</PREFERENCIANOTIFDIVFINAL><tipoConferencia>SAIDA</tipoConferencia></requestBody></serviceRequest>
+
+4) (Ao clicar em OK) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.removeItensConferidosColetor"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_27"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.removeItensConferidosColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><NUCONFERENCIA>979311</NUCONFERENCIA><REMOVERS
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.removeItensConferidosColetor"><requestBody><idusu>OTE=</idusu><CONFERENCIA><NUCONFERENCIA>979311</NUCONFERENCIA><REMOVERSERIES>false</REMOVERSERIES></CONFERENCIA></requestBody></serviceRequest>
+
+### Ao gerar os volumes
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.registraEtiquetasVolume"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_28"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.registraEtiquetasVolume"><requestBody><idusu>OTE=</idusu><ETIQUETAS><NUCONFERENCIA>979311</NUCONFERENCIA><QTDEVOLUMES>3</
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.registraEtiquetasVolume"><requestBody><idusu>OTE=</idusu><ETIQUETAS><NUCONFERENCIA>979311</NUCONFERENCIA><QTDEVOLUMES>3</QTDEVOLUMES></ETIQUETAS></requestBody></serviceRequest>
+
+### Ao enviar para a doca
+-----------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.enviaConferenciaPedidosParaDoca"
+    Form item: "mgeSession" = "9jJ71msaEa5ETFUlzLMxcEQY-qDFe2-FsPMXD8jC"
+    Form item: "callID" = "9E07EA43A0937C9AC3889BAC7BB3AC38_29"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><conferencia><NUCONFERENCIA>979311</NUCONFERENCIA><NUMNO
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><conferencia><NUCONFERENCIA>979311</NUCONFERENCIA><NUMNOTA>316718</NUMNOTA><ORDEMCARGA>13573</ORDEMCARGA></conferencia></requestBody></serviceRequest>
+
+### Ao cancelar a conferencia
+-----------------------------------------------------------
+1)
+Request Method: POST
+Request URI Path: /mgewms/service.sbr
+Request URI Query: serviceName=MgeWmsSP.cancelaConferencia&mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx&outputType=json&callID=73FD81471A57B7F894F11B98CBF66E78_7
+    Request URI Query Parameter: serviceName=MgeWmsSP.cancelaConferencia
+    Request URI Query Parameter: mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx
+    Request URI Query Parameter: outputType=json
+    Request URI Query Parameter: callID=73FD81471A57B7F894F11B98CBF66E78_7
+Body:
+    {
+        "requestBody": {
+            "CONFERENCIA": {
+                "REMOVERSERIES": {
+                    "$": "false"
+                },
+                "NUCONFERENCIA": {
+                    "$": "1051090"
+                }
+            },
+            "idusu": {
+                "$": "OTE=\n"
+            },
+            "NUCONFERENCIA": {
+                "$": "1051090"
+            },
+            "MULTICONFERENTES": {
+                "$": true
+            }
+        }
+    }
+Response:
+    {
+        "serviceName": "MgeWmsSP.cancelaConferencia",
+        "status": "1",
+        "pendingPrinting": "false",
+        "transactionId": "80E5A9CAD403D2A887B4A88364D8781C",
+        "responseBody": {}
+    }
+
+2)
+Request Method: POST
+Request URI Path: /mgewms/service.sbr
+Request URI Query: serviceName=MgeWmsSP.removeItensConferidosColetor&mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx&outputType=json&callID=73FD81471A57B7F894F11B98CBF66E78_8
+    Request URI Query Parameter: serviceName=MgeWmsSP.removeItensConferidosColetor
+    Request URI Query Parameter: mgeSession=iGywBdNXtwcT5gTiBk_vjbYH89hnjkpRsJlSBMvx
+    Request URI Query Parameter: outputType=json
+    Request URI Query Parameter: callID=73FD81471A57B7F894F11B98CBF66E78_8
+Body:
+    {
+        "requestBody": {
+            "CONFERENCIA": {
+                "REMOVERSERIES": {
+                    "$": false
+                },
+                "NUCONFERENCIA": {
+                    "$": 1051090
+                }
+            },
+            "idusu": {
+                "$": "OTE=\n"
+            }
+        }
+    }
+Response:
+    {
+        "serviceName": "MgeWmsSP.removeItensConferidosColetor",
+        "status": "1",
+        "pendingPrinting": "false",
+        "transactionId": "D74820FDB031869A2FAD032912EF9442",
+        "responseBody": {}
+    }
+
+
+
+-----------------------------------------------------
+ENVIAR PARA DOCA
+-----------------------------------------------------
+
+### Ao clicar na opção de enviar
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaConferenciasDocaVirtual"
+    Form item: "mgeSession" = "uXWON_xIu9jro6ywtkIm4difCf_n8zowyQXdXUn-"
+    Form item: "callID" = "1C6220805CD369E2E90A328606DE4F5E_4"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaConferenciasDocaVirtual"><requestBody><idusu>OTE=</idusu></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaConferenciasDocaVirtual"><requestBody><idusu>OTE=</idusu></requestBody></serviceRequest>
+    Retorno:
+    	<serviceResponse
+	    serviceName="MgeWmsSP.buscaConferenciasDocaVirtual"
+	    status="1"
+	    pendingPrinting="false"
+	    transactionId="469B11DD915356158EB79D0492C82CE4">
+	    <responseBody>
+	</serviceResponse>
+
+### Ao selecionar um pedido para enviar
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.enviaConferenciaPedidosParaDoca"
+    Form item: "mgeSession" = "8wvBBYghUbdnvcC5PXlNboZ78SPar_Z-GCZuz6e5"
+    Form item: "callID" = "A946EF010BFA3F44B5C972BD6271301D_7"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><WMSUSAREGVOLFAT>false</WMSUSAREGVOLFAT><conferencia><NU
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><WMSUSAREGVOLFAT>false</WMSUSAREGVOLFAT><conferencia><NUCONFERENCIA>1033646</NUCONFERENCIA><NUMNOTA>335167</NUMNOTA><NUNOTA>1810846</NUNOTA><ORDEMCARGA>14392</ORDEMCARGA></conferencia></requestBody></serviceRequest>
+    Retorno: 
+     <serviceResponse
+	    serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"
+	    status="1"
+	    pendingPrinting="false"
+	    transactionId="777DE449C3EB9137C41D9E27D7EA966C">
+	    <responseBody/>
+     </serviceResponse>
+    Erro:
+    	<serviceResponse
+    serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"
+    status="0"
+    pendingPrinting="false"
+    transactionId="E38E8FE2E631877DC4C4AECBDF1288DD">
+    <tsError
+        tsErrorCode="WMS_E00143"
+        tsErrorLevel="ERROR"/>
+    <statusMessage>
+        <![CDATA[ySBuZWNlc3PhcmlvIGltcHJpbWlyIGFzIGV0aXF1ZXRhcyBkZSB2b2x1bWUgcGFyYSBhIHNlcGFy\nYefjbyAnOTUzNTgxJyBhbnRlcyBkZSBlbnZpYXIgcGFyYSBhIGRvY2Eu\n]]>
+        </statusMessage>
+    </serviceResponse>
+
+
+-----------------------------------------------------
+RECONTAGEM
+-----------------------------------------------------
+
+### Ao informar o chekcout que vai ser reconferido
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoRecontagem"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_4"
+    Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoRecontagem"><requestBody><ENDERECO>02.904.319</ENDERECO></requestBody></serviceRequest>"
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoRecontagem"><requestBody><ENDERECO>02.904.319</ENDERECO></requestBody></serviceRequest>
+    Retorno:
+        eXtensible Markup Language
+        <?xml
+        <serviceResponse
+            serviceName="MgeWmsSP.buscaInfoRecontagem"
+            status="1"
+            pendingPrinting="false"
+            transactionId="BEA29406A15B37B55729AFEAB756C911">
+            <responseBody>
+                <entity
+                    name="TGWCON">
+                    <linhas>
+                        <linha
+                            SOLICITAR_NROPALETE="false"/>
+                        </linhas>
+                    </entity>
+                </responseBody>
+            </serviceResponse>
+
+
+2) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.recontagemDoca"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_5"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.recontagemDoca"><requestBody><idusu>OTE=</idusu><ENDERECO>02.904.319</ENDERECO><recontagemPorPedido>true</recontagemPorPe
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.recontagemDoca"><requestBody><idusu>OTE=</idusu><ENDERECO>02.904.319</ENDERECO><recontagemPorPedido>true</recontagemPorPedido><tipoConferencia>SAIDA</tipoConferencia></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.recontagemDoca"
+            status="1"
+            pendingPrinting="false"
+            transactionId="44E7008D351696A269FBF3215AC313F5">
+            <responseBody>
+                <entity
+                name="TGWREC">
+                <linhas>
+                    <linha
+                        NUCONFERENCIA="1033601"
+                        NUTAREFA="1739831"
+                        CODEND="66899"
+                        UTILIZACONTROLE="S"
+                        ORDEMCARGA="14453"
+                        NUMNOTA="335102"
+                        NUNOTA="1810713"
+                        VOLCONTINUO="N"
+                        CODUSU="684"
+                        NOMEUSU="ISABELLI"
+                        TIPCONF="S"/>
+                    </linhas>
+                </entity>
+            </responseBody>
+        </serviceResponse>
+
+
+3) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.proximaRecontagem"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_6"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.proximaRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><NUTAREFA>1660559</NUTAREFA><CODE
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.proximaRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><NUTAREFA>1660559</NUTAREFA><CODEND>72762</CODEND><tipoConferencia>SAIDA</tipoConferencia><recontagemPorPedido>true</recontagemPorPedido></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.proximaRecontagem"
+            status="1"
+            pendingPrinting="false"
+            transactionId="B169A3ACFE26E335B3FE98643FDBD376">
+            <responseBody>
+                <entity
+                    name="TGWREC">
+                    <linhas>
+                        <linha
+                            NUCONFERENCIA="1033601"
+                            NUTAREFA="1739831"
+                            SEQUENCIA="1"
+                            CONTROLE=" "
+                            CODEND="66899"
+                            NROPALETE="0"
+                            CODEMP="1"
+                            PRIMEIRARECONTAGEM="1"
+                            CODBARRASPROD="7898567700562"
+                            CODPROD="24010"
+                            NUMNOTA="335102"
+                            ORDEMCARGA="14453"
+                            TIPOREC="NORMAL"
+                            DESCRPROD="TINTA SPRAY METALICA ALUMINIO 400ML (6)."
+                            COMPLDESC=""
+                            USACONTROLE="N"/>
+                    </linhas>
+                </entity>
+            </responseBody>
+        </serviceResponse>
+
+
+### Ao recontar o produto
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoProduto"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_9"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><CODBARRAS>7891595007078</CODBARRAS><NUCONFERENCIA>979306</NUCONFERENCI
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><CODBARRAS>7891595007078</CODBARRAS><NUCONFERENCIA>979306</NUCONFERENCIA><QUANTIDADE>24</QUANTIDADE><PRIMEIRARECONTAGEM>false</PRIMEIRARECONTAGEM></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.buscaInfoProduto"
+            status="1"
+            pendingPrinting="false"
+            transactionId="165612A992B7D805DD10B49E2B837913">
+            <responseBody>
+                <entity
+                    name="TGFPRO">
+                    <linhas>
+                        <linha
+                            CODPROD="24010"
+                            CODBARRAS="7898567700562"
+                            DESCRPROD="TINTA SPRAY METALICA ALUMINIO 400ML (6)."
+                            UTILIZALOTE="N"
+                            SHELFLIFE="0"
+                            DTSERVIDOR="20250905"
+                            PRODUTOOUTROPEDIDO="N"
+                            DIVERGENCIA="0"
+                            QTDECANCELADA="0"
+                            CODVOLQTDCANCELADA="FR"
+                            NUCONFERENCIA="0"
+                            CONFENTRADA="N"
+                            TEMITENSACONFERIR="N"
+                            USASERIESEPWMS="false"
+                            USASERIEMEDWMS="false"
+                            INFOCAMPOADEND=""
+                            USAVOLUMECONTINUO="false"
+                            QUANTIDADE="6.0000"
+                            PESOBRUTO=""
+                            M3=""
+                            NORMAPALETIZACAO=""/>
+                    </linhas>
+                </entity>
+            </responseBody>
+        </serviceResponse>
+
+
+2) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoProduto"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_10"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><considerarLeituraCorrente>true</considerarLeituraCorrente><VALIDARQTD>
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoProduto"><requestBody><idusu>OTE=</idusu><considerarLeituraCorrente>true</considerarLeituraCorrente><VALIDARQTD>true</VALIDARQTD><CODBARRAS>7891595007078</CODBARRAS><NUCONFERENCIA>979306</NUCONFERENCIA><QUANTIDADE>24.0</QUANTIDADE><QTDAVARIA>0.0</QTDAVARIA><LOTE> </LOTE><UTILIZAEXPLOTE>false</UTILIZAEXPLOTE></requestBody></serviceRequest>
+
+3) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.envioRecontagem"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_11"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.envioRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><SEQUENCIA>1</SEQUENCIA><NUTAREFA>1660559<
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.envioRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><SEQUENCIA>1</SEQUENCIA><NUTAREFA>1660559</NUTAREFA><CODBARRAS>7891595007078</CODBARRAS><QUANTIDADE>24.0</QUANTIDADE><FUNCAORECPECA>false</FUNCAORECPECA><QTDPECAS>0</QTDPECAS><TIPOREC>NORMAL</TIPOREC><QTDAVARIA>0</QTDAVARIA><CONTROLE> </CONTROLE><DTVAL> </DTVAL><UTILIZAEXPLOTE>false</UTILIZAEXPLOTE><CODBARRASCONCATWMS></CODBARRASCONCATWMS><PRIMEIRARECONTAGEM>false</PRIMEIRARECONTAGEM><RECRIAVOLPOSREC>false</RECRIAVOLPOSREC></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.envioRecontagem"
+            status="1"
+            pendingPrinting="false"
+            transactionId="D65D58E113ABEC49C817B81E68581047">
+            <responseBody>
+                <entity
+                    name="MSGRET">
+                    <linhas>
+                        <linha
+                            MENSAGEM="OK"
+                            CODENDDOCA="67"
+                            DESCRDOCACONFPED="DOCA EXPEDIÇÃO 011" (Vazio quando possui mais produtos)
+                            IMPETIQVOLCONF="true"/>
+                    </linhas>
+                </entity>
+            </responseBody>
+        </serviceResponse>
+    Retorno Erro:
+        <responseBody>
+            <entity
+                name="MSGRET">
+                <linhas>
+                    <linha
+                        MENSAGEM="Houve divergência no processo de recontagem. Favor, conferir e programar nova recontagem no MGE."
+                        CODENDDOCA="53"
+                        DESCRDOCACONFPED="DOCA EXPEDIÇÃO 004"
+                        IMPETIQVOLCONF="true"/>
+                </linhas>
+            </entity>
+        </responseBody>
+
+
+4) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.proximaRecontagem"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_6"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.proximaRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><NUTAREFA>1660559</NUTAREFA><CODE
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.proximaRecontagem"><requestBody><idusu>OTE=</idusu><NUCONFERENCIA>979306</NUCONFERENCIA><NUTAREFA>1660559</NUTAREFA><CODEND>72762</CODEND><tipoConferencia>SAIDA</tipoConferencia><recontagemPorPedido>true</recontagemPorPedido></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.proximaRecontagem"
+            status="1"
+            pendingPrinting="false"
+            transactionId="B169A3ACFE26E335B3FE98643FDBD376">
+            <responseBody>
+                <entity
+                    name="TGWREC">
+                    <linhas>
+                        <linha
+                            NUCONFERENCIA="1033601"
+                            NUTAREFA="1739831"
+                            SEQUENCIA="1"
+                            CONTROLE=" "
+                            CODEND="66899"
+                            NROPALETE="0"
+                            CODEMP="1"
+                            PRIMEIRARECONTAGEM="1"
+                            CODBARRASPROD="7898567700562"
+                            CODPROD="24010"
+                            NUMNOTA="335102"
+                            ORDEMCARGA="14453"
+                            TIPOREC="NORMAL"
+                            DESCRPROD="TINTA SPRAY METALICA ALUMINIO 400ML (6)."
+                            COMPLDESC=""
+                            USACONTROLE="N"/>
+                    </linhas>
+                </entity>
+            </responseBody>
+        </serviceResponse>
+
+
+### Ao informar volume
+-----------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.registraEtiquetasVolume"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_12"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.registraEtiquetasVolume"><requestBody><idusu>OTE=</idusu><ETIQUETAS><NUCONFERENCIA>979306</NUCONFERENCIA><QTDEVOLUMES>2</
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.registraEtiquetasVolume"><requestBody><idusu>OTE=</idusu><ETIQUETAS><NUCONFERENCIA>979306</NUCONFERENCIA><QTDEVOLUMES>2</QTDEVOLUMES></ETIQUETAS></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.registraEtiquetasVolume"
+            status="1"
+            pendingPrinting="false"
+            transactionId="15065AD0FE2EA2BAA1A54AF12AACDB00">
+            <responseBody/>
+        </serviceResponse>
+
+
+### Ao enviar para a doca
+-----------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.enviaConferenciaPedidosParaDoca"
+    Form item: "mgeSession" = "e6I5rrboErivVhXYiDOSNagFB5Nm6lUV9yUaPP4u"
+    Form item: "callID" = "8E02078C165D9398F5EE506E0ACD08DD_13"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><conferencia><NUCONFERENCIA>979306</NUCONFERENCIA><NUMNO
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"><requestBody><idusu>OTE=</idusu><conferencia><NUCONFERENCIA>979306</NUCONFERENCIA><NUMNOTA>316321</NUMNOTA><ORDEMCARGA>13573</ORDEMCARGA></conferencia></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.enviaConferenciaPedidosParaDoca"
+            status="1"
+            pendingPrinting="false"
+            transactionId="CB31E2CAE93C841EEC4BAEEF7C0CB01F">
+            <responseBody/>
+        </serviceResponse>
+
+### Ao cancelar a tarefa
+-----------------------------------------------------------
+1) HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.rejeitaTarefa"
+    Form item: "mgeSession" = "xWxYR4YpR2CSdl0OZ2URjykzkTn8q45LbAnrVz31"
+    Form item: "callID" = "765E503AC7F9404448D82759A1F5EF35_7"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.rejeitaTarefa"><requestBody><idusu>OTE=</idusu><TAREFA><NUTAREFA>1739845</NUTAREFA><SEQUENCIA>1</SEQUENCIA></TAREFA></req
+        Key: xmlRequestBody
+        Value: <<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.rejeitaTarefa"><requestBody><idusu>OTE=</idusu><TAREFA><NUTAREFA>1739845</NUTAREFA><SEQUENCIA>1</SEQUENCIA></TAREFA></requestBody></serviceRequest>
+    Retorno: <serviceResponse
+    serviceName="MgeWmsSP.rejeitaTarefa"
+    status="1"
+    pendingPrinting="false"
+    transactionId="F4AAC693B7393A2015041C895FB5E353">
+    <responseBody/>
+    </serviceResponse>
+
+
+-----------------------------------------------------
+SEPARACAO
+-----------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscarEquipamentos"
+    Form item: "mgeSession" = "VJL4jE0T0jw_8qaStx0BduglbFqKTG7ehCcshWuo"
+    Form item: "callID" = "FB2ADF418DE80613F3908281386C6FDA_33"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscarEquipamentos"><requestBody><param campoCriterio="DESCRICAO" valorCriterio=""/><idusu>OTE=</idusu></requestBody></se
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscarEquipamentos"><requestBody><param campoCriterio="DESCRICAO" valorCriterio=""/><idusu>OTE=</idusu></requestBody></serviceRequest>
+
+
+-----------------------------------------------------
+CONFERENCIA DE VOLUMES
+-----------------------------------------------------
+
+### Ao ler o endereço da Doca
+------------------------------------------------------------------------------------------------------
+Form item: "serviceName" = "MgeWmsSP.selecionaDocaConferenciaVolumes"
+Form item: "mgeSession" = "SATXqj83KR3Y0tUr4xFnOLz9rEvc7i2awjVOFD39"
+Form item: "callID" = "101ED4654F3C8897561AAA2DB85A7D72_9"
+[…] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.selecionaDocaConferenciaVolumes"><requestBody><idusu>OTE=</idusu><ENDERECO>01.996.167</ENDERECO></requestBody></serviceRe
+    Key: xmlRequestBody
+    Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.selecionaDocaConferenciaVolumes"><requestBody><idusu>OTE=</idusu><ENDERECO>01.996.167</ENDERECO></requestBody></serviceRequest>
+Retorno:
+    <?xml
+    <serviceResponse
+        serviceName="MgeWmsSP.selecionaDocaConferenciaVolumes"
+        status="1"
+        pendingPrinting="false"
+        transactionId="A7589BD9C101126D23D8F4E04098A6E2">
+        <responseBody/>
+        </serviceResponse>
+
+### Ao ler o codigo do volume
+-------------------------------------------------------------------------------------------------------
+1) Verfica se o volume pertence a doca
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.buscaInfoVolume"
+    Form item: "mgeSession" = "SATXqj83KR3Y0tUr4xFnOLz9rEvc7i2awjVOFD39"
+    Form item: "callID" = "101ED4654F3C8897561AAA2DB85A7D72_12"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoVolume"><requestBody><idusu>OTE=</idusu><IDREV>3355330</IDREV><ENDERECO>01.996.167</ENDERECO></requestBody></ser
+        Key: xmlRequestBody
+        Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest serviceName="MgeWmsSP.buscaInfoVolume"><requestBody><idusu>OTE=</idusu><IDREV>3355330</IDREV><ENDERECO>01.996.167</ENDERECO></requestBody></serviceRequest>
+    Retorno:
+        <serviceResponse
+            serviceName="MgeWmsSP.buscaInfoVolume"
+            status="1"
+            pendingPrinting="false"
+            transactionId="77D389BDEF5687AD0CE1DF6484E63381">
+            <responseBody>
+                <entity
+                    name="TGWREV">
+                    <linhas>
+                        <linha
+                            PERTENCEACONF="true"
+                            NUSEPARACAO="954073"/>
+                        </linhas>
+                    </entity>
+                </responseBody>
+        </serviceResponse>
+    Erro:
+        <serviceResponse
+            serviceName="MgeWmsSP.buscaInfoVolume"
+            status="0"
+            pendingPrinting="false"
+            transactionId="D996148A06E873462553211A001B8462">
+            <tsError
+                tsErrorCode="WMS_E00054"
+                tsErrorLevel="ERROR"/>
+            <statusMessage>
+                <![CDATA[Vm9sdW1lIG7jbyBwZXJ0ZW5jZSBhIGVzdGEgZG9jYSwgZGV2ZXJpYSBlc3RhciBuYSBkb2NhICcw\nMS45OTYuMDE1\n]]>
+                </statusMessage>
+        </serviceResponse>
+
+2) Registra o volume conferido
+Form item: "serviceName" = "MgeWmsSP.registraVolumeConferidoColetor"
+Form item: "mgeSession" = "SATXqj83KR3Y0tUr4xFnOLz9rEvc7i2awjVOFD39"
+Form item: "callID" = "101ED4654F3C8897561AAA2DB85A7D72_13"
+[…] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.registraVolumeConferidoColetor"><requestBody><idusu>OTE=</idusu><NUSEPARACAO>954073</NUSEPARACAO><IDREV>3355330</IDREV></request
+    Key: xmlRequestBody
+    Value: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.registraVolumeConferidoColetor"><requestBody><idusu>OTE=</idusu><NUSEPARACAO>954073</NUSEPARACAO><IDREV>3355330</IDREV></requestBody></serviceRequest>
+Retorno:
+    <serviceResponse
+    serviceName="MgeWmsSP.registraVolumeConferidoColetor"
+    status="1"
+    pendingPrinting="false"
+    transactionId="95CCF41EB8B14E1E333B51470EF681D6">
+    <responseBody/>
+    </serviceResponse>
+
+### Ao finalizar a conferencia
+-------------------------------------------------------------------------------------------------------
+HTML Form URL Encoded: application/x-www-form-urlencoded
+    Form item: "serviceName" = "MgeWmsSP.confereVolumes"
+    Form item: "mgeSession" = "SATXqj83KR3Y0tUr4xFnOLz9rEvc7i2awjVOFD39"
+    Form item: "callID" = "101ED4654F3C8897561AAA2DB85A7D72_19"
+    […] Form item: "xmlRequestBody" = "<?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.confereVolumes"><requestBody><idusu>OTE=</idusu><ENDERECO>01.996.167</ENDERECO><volumes><NUSEPARACAO>954073</NUSEPARACAO></volum
+        Key: xmlRequestBody
+        Value […]: <?xml version="1.0" encoding="ISO-8859-1"?><serviceRequest nome="MgeWmsSP.confereVolumes"><requestBody><idusu>OTE=</idusu><ENDERECO>01.996.167</ENDERECO><volumes><NUSEPARACAO>954073</NUSEPARACAO></volumes></requestBody></serviceRequest>
+    Retorno:
+
+    Erro: 
+        <serviceResponse
+            serviceName="MgeWmsSP.confereVolumes"
+            status="0"
+            pendingPrinting="false"
+            transactionId="EADD02AC3D03D7D10D4464EB542085B1">
+            <tsError
+                tsErrorCode="WMS_E00126"
+                tsErrorLevel="ERROR"/>
+            <statusMessage>
+                <![CDATA[QSBjb25mZXLqbmNpYSBkZSB2b2x1bWVzIGRhIHNlcGFyYefjbyA5NTQwNzMgbuNvIHBvZGUgc2Vy\nIGluaWNpYWRhLCBwb2lzIGVsYSBhaW5kYSBu428gZXN04SBuYSBkb2NhLg==\n]]>
+                </statusMessage>
+        </serviceResponse>

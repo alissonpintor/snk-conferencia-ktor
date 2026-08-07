@@ -1,0 +1,63 @@
+    <div class="label-card">
+        <!-- Row 1: Header -->
+        <div class="header-row">
+            <div class="logo-box">STOKY</div>
+            <div class="header-divider"></div>
+            <div class="pedido-box">
+                <span class="pedido-title">PEDIDO: <span class="pedido-val">{{nroNota}}</span></span>
+                <span class="oc-val">O.C: {{ordemCarga}}</span>
+            </div>
+            <div class="header-divider"></div>
+            <div class="info-box">
+                <span class="info-date">Dt/Hr: {{dhInc}}</span>
+                <span class="info-user">{{nomeConf}}</span>
+            </div>
+        </div>
+        
+        <div class="border-line"></div>
+        
+        <!-- Row 2: Client Code - Name -->
+        <div class="client-row">
+            {{codParc}} - {{nomeParc}}
+        </div>
+        
+        <div class="border-line"></div>
+        
+        <!-- Row 3: Logistics details -->
+        <div class="logistics-row">
+            <div class="city-box">
+                <span class="logistics-title">Cidade / Estado:</span>
+                <span class="city-val">{{cidadeState}}</span>
+            </div>
+            <div class="header-divider"></div>
+            <div class="volume-box">
+                <span class="logistics-title">Volume</span>
+                <span class="volume-val">{{seqEtiqueta}}</span>
+            </div>
+            <div class="header-divider"></div>
+            <div class="entrega-box">
+                <span class="logistics-title">Entrega</span>
+                <span class="entrega-val">{{tipoEntrega}}</span>
+            </div>
+        </div>
+        
+        <div class="border-line"></div>
+        
+        <!-- Row 4: Address Details -->
+        <div class="address-row">
+            <div class="razao-val">RAZÃO: {{razaoSocial}}</div>
+            <div class="address-val">
+                {{enderecoCompleto}}
+            </div>
+        </div>
+        
+        <div class="border-line"></div>
+        
+        <!-- Row 5: Barcode footer -->
+        <div class="barcode-row">
+            <div class="barcode-svg-container">
+                <svg class="barcode-svg" id="barcode-{{idRev}}"></svg>
+            </div>
+            <div class="barcode-text">{{idRev}}</div>
+        </div>
+    </div>

@@ -1,0 +1,32 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "snk-conferencia",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2025-10-26",
+	"compatibility_flags": [
+		"nodejs_als"
+		// "nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"routes": [
+		{
+			"pattern": "conferencia.stoky.dev.br",
+			"custom_domain": true
+		}
+	],
+	"version_metadata": {
+		"binding": "CF_VERSION_METADATA"
+	},
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"vars": {
+		"PROD_URL": "https://sankhya.stoky.com.br",
+		"TREINA_URL": "https://teste.stoky.com.br",
+		"SENTRY_AUTH_TOKEN": ""
+	}
+}

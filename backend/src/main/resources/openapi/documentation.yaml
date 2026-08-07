@@ -1,0 +1,848 @@
+openapi: 3.0.3
+info:
+  title: SNK Conferência - API REST Ktor
+  description: API REST em Kotlin/Ktor para autenticação, consultas de expedição, separação e conferência de mercadorias integrada ao ERP Sankhya.
+  version: 1.0.0
+servers:
+  - url: /
+    description: Servidor Atual (Relativo)
+
+security:
+  - BearerAuth: []
+
+paths:
+  # ==========================================
+  # AUTENTICAÇÃO
+  # ==========================================
+  /api/v1/auth/login:
+    post:
+      security: []
+      tags:
+        - Autenticação
+      summary: Efetuar Login no ERP Sankhya
+      description: Valida as credenciais informadas contra o serviço MobileLoginSP.login do Sankhya no servidor selecionado e retorna um token JWT de sessão.
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthCredentialsDto'
+      responses:
+        '200':
+          description: Autenticação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponseDto'
+        '400':
+          description: Requisição ou credenciais inválidas.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Autenticação recusada pelo ERP Sankhya.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/auth/verify:
+    get:
+      tags:
+        - Autenticação
+      summary: Validar Token de Sessão JWT
+      description: Revalida a integridade e expiração do token JWT informado no cabeçalho Authorization.
+      operationId: verifySession
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Sessão válida e ativa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSessionDto'
+        '401':
+          description: Token inválido, expirado ou ausente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/auth/logout:
+    post:
+      tags:
+        - Autenticação
+      summary: Encerrar Sessão do Usuário
+      description: Invalida a sessão ativa do usuário no backend.
+      operationId: logout
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Sessão encerrada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Sessão encerrada com sucesso.
+
+  # ==========================================
+  # LOOKUPS / AUTOCOMPLETAR
+  # ==========================================
+  /api/v1/empresas:
+    get:
+      tags:
+        - Lookups
+      summary: Listar Empresas Ativas
+      description: Retorna a lista de empresas ativas cadastradas no ERP Sankhya.
+      operationId: buscarEmpresas
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Lista de empresas retornada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmpresaResponse'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/parceiros:
+    get:
+      tags:
+        - Lookups
+      summary: Autocompletar / Buscar Parceiros
+      description: Busca parceiros de negócio por código ou razão social/nome fantasia.
+      operationId: buscarParceiros
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: q
+          in: query
+          description: Código do parceiro ou termo para busca parcial por nome.
+          required: false
+          schema:
+            type: string
+            example: "STOKY"
+      responses:
+        '200':
+          description: Lista de parceiros encontrados (máximo 50 registros).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParceiroResponse'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/produtos:
+    get:
+      tags:
+        - Lookups
+      summary: Autocompletar / Buscar Produtos
+      description: Busca produtos por código numérico ou descrição/marca/referência.
+      operationId: buscarProdutos
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: q
+          in: query
+          description: Código do produto ou termo para busca parcial por descrição.
+          required: false
+          schema:
+            type: string
+            example: "PARAFUSO"
+      responses:
+        '200':
+          description: Lista de produtos encontrados (máximo 50 registros).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProdutoResponse'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  # ==========================================
+  # SEPARAÇÃO DE MERCADORIAS
+  # ==========================================
+  /api/v1/separacoes/search:
+    post:
+      tags:
+        - Separação
+      summary: Consultar Tarefas de Separação por Filtros
+      description: Realiza busca combinada de tarefas de separação na View APP_SEPARACAO. Exige pelo menos 1 filtro preenchido.
+      operationId: buscarSeparacoes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeparacaoFilterRequest'
+      responses:
+        '200':
+          description: Separações encontradas.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SeparacaoResponse'
+        '400':
+          description: Nenhum filtro informado ou parâmetros inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/separacoes/{nroSeparacao}/itens:
+    get:
+      tags:
+        - Separação
+      summary: Detalhar Itens de uma Separação
+      description: Retorna os produtos e itens associados a uma tarefa de separação específica.
+      operationId: buscarItensSeparacao
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: nroSeparacao
+          in: path
+          required: true
+          description: Número da separação
+          schema:
+            type: integer
+            format: int64
+            example: 1001
+      responses:
+        '200':
+          description: Itens da separação retornados com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemSeparacaoResponse'
+        '400':
+          description: Número de separação inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/separacoes/{nroSeparacao}/volumes/quantidade:
+    get:
+      tags:
+        - Separação
+      summary: Obter Quantidade de Volumes da Separação
+      description: Retorna a quantidade de volumes/etiquetas registradas na tabela TGWREV para a separação.
+      operationId: obterQuantidadeVolumes
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: nroSeparacao
+          in: path
+          required: true
+          description: Número da separação
+          schema:
+            type: integer
+            format: int64
+            example: 1001
+      responses:
+        '200':
+          description: Quantidade de volumes consultada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuantidadeVolumesResponse'
+        '400':
+          description: Número de separação inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/separacoes/{nroSeparacao}/volumes:
+    post:
+      tags:
+        - Separação
+      summary: Gerar Etiquetas de Volume
+      description: Dispara o procedimento MgeWmsSP.gerarEtiquetasVolume para criar os volumes da separação no ERP Sankhya.
+      operationId: gerarVolumes
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: nroSeparacao
+          in: path
+          required: true
+          description: Número da separação
+          schema:
+            type: integer
+            format: int64
+            example: 1001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GerarVolumesRequest'
+      responses:
+        '201':
+          description: Volumes gerados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GerarVolumesResponse'
+        '400':
+          description: Quantidade inválida ou erro no processamento.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  # ==========================================
+  # CONFERÊNCIA E EXPEDIÇÃO
+  # ==========================================
+  /api/v1/conferencia/doca:
+    post:
+      tags:
+        - Conferência
+      summary: Enviar Conferência para a Doca
+      description: Direciona a conferência/separação para a doca de expedição via MgeWmsSP.enviaConferenciaPedidosParaDoca.
+      operationId: enviarParaDoca
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnviarDocaRequest'
+      responses:
+        '200':
+          description: Envio para a doca realizado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenciaActionResponse'
+        '400':
+          description: Parâmetros de conferência inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/cancelar:
+    post:
+      tags:
+        - Conferência
+      summary: Cancelar Conferência
+      description: Cancela a conferência ativa da separação no ERP via MgeWmsSP.cancelaConferencia.
+      operationId: cancelarConferencia
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelarConferenciaRequest'
+      responses:
+        '200':
+          description: Conferência cancelada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenciaActionResponse'
+        '400':
+          description: Número de conferência inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+  /api/v1/conferencia/volumes/imprimir:
+    post:
+      tags:
+        - Conferência
+      summary: Solicitar Impressão de Etiquetas de Volumes
+      description: Valida a existência de etiquetas de volume na tabela TGWREV e aceita a solicitação de impressão.
+      operationId: imprimirVolumes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImprimirVolumesRequest'
+      responses:
+        '200':
+          description: Solicitação de impressão realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenciaActionResponse'
+        '400':
+          description: Número único ou número de separação inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '401':
+          description: Sessão não informada ou token inválido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT retornado no endpoint de login.
+
+  schemas:
+    AuthCredentialsDto:
+      type: object
+      required:
+        - username
+        - password
+        - server
+      properties:
+        username:
+          type: string
+          example: alisson
+        password:
+          type: string
+          format: password
+          example: "******"
+        server:
+          type: string
+          enum: [producao, treinamento]
+          example: producao
+
+    TokenResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        tokenType:
+          type: string
+          example: Bearer
+        expiresIn:
+          type: integer
+          format: int64
+          example: 86400
+        user:
+          $ref: '#/components/schemas/UserSessionDto'
+
+    UserSessionDto:
+      type: object
+      properties:
+        idusu:
+          type: string
+          example: "123"
+        username:
+          type: string
+          example: alisson
+        jsessionid:
+          type: string
+          example: 994ABF4357D...
+        server:
+          type: string
+          example: producao
+
+    ErrorResponseDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Requisição Inválida
+        message:
+          type: string
+          example: Informe pelo menos um filtro para buscar as separações.
+        status:
+          type: integer
+          example: 400
+
+    EmpresaResponse:
+      type: object
+      properties:
+        codEmp:
+          type: integer
+          format: int64
+          example: 1
+        nomeEmp:
+          type: string
+          example: STOKY DISTRIBUIDORA LTDA
+        razamSoc:
+          type: string
+          example: STOKY DISTRIBUIDORA LTDA
+
+    ParceiroResponse:
+      type: object
+      properties:
+        codParc:
+          type: integer
+          format: int64
+          example: 10
+        nomeParc:
+          type: string
+          example: PARCEIRO DE TESTE LTDA
+        razaoSocial:
+          type: string
+          example: PARCEIRO DE TESTE LTDA
+
+    ProdutoResponse:
+      type: object
+      properties:
+        codProd:
+          type: integer
+          format: int64
+          example: 7700
+        descrProd:
+          type: string
+          example: PARAFUSO INOX 304
+        referencia:
+          type: string
+          example: 7891234567890
+        marca:
+          type: string
+          example: STOKY
+
+    SeparacaoFilterRequest:
+      type: object
+      properties:
+        empresa:
+          type: integer
+          format: int64
+          example: 1
+        parceiro:
+          type: integer
+          format: int64
+          example: 10
+        dataInicio:
+          type: string
+          example: "2026-08-01"
+        dataFim:
+          type: string
+          example: "2026-08-31"
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 4001
+        nroUnico:
+          type: integer
+          format: int64
+          example: 2001
+        nroPedido:
+          type: integer
+          format: int64
+          example: 3001
+        ordemCarga:
+          type: integer
+          format: int64
+          example: 88
+        produto:
+          type: integer
+          format: int64
+          example: 7700
+        situacao:
+          type: array
+          items:
+            type: integer
+          example: [1, 2]
+
+    SeparacaoResponse:
+      type: object
+      properties:
+        codEmp:
+          type: integer
+          format: int64
+          example: 1
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        nroTarefa:
+          type: integer
+          format: int64
+          example: 500
+        nroUnico:
+          type: integer
+          format: int64
+          example: 2001
+        nroNota:
+          type: integer
+          format: int64
+          example: 3001
+        codParc:
+          type: integer
+          format: int64
+          example: 10
+        nomeParc:
+          type: string
+          example: PARCEIRO DE TESTE LTDA
+        ordemCarga:
+          type: integer
+          format: int64
+          example: 88
+        dataSeparacao:
+          type: string
+          example: "2026-08-01"
+        codSit:
+          type: integer
+          example: 1
+        situacao:
+          type: string
+          example: Pendente
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 4001
+        enviadoParaDoca:
+          type: string
+          example: Sim
+        codConf:
+          type: integer
+          format: int64
+          example: 15
+        nomeConf:
+          type: string
+          example: OPERADOR CONFERENTE
+        separador:
+          type: string
+          example: SEPARADOR 1
+        codArea:
+          type: integer
+          format: int64
+          example: 2
+        areaSeparacao:
+          type: string
+          example: AREA EXPEDICAO
+        checkout:
+          type: string
+          example: CHECKOUT-01
+        tipoEntrega:
+          type: string
+          example: PADRAO
+
+    ItemSeparacaoResponse:
+      type: object
+      properties:
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        nroTarefa:
+          type: integer
+          format: int64
+          example: 500
+        codProduto:
+          type: integer
+          format: int64
+          example: 7700
+        descricaoProduto:
+          type: string
+          example: PARAFUSO INOX 304
+        marca:
+          type: string
+          example: STOKY
+        codBarras:
+          type: string
+          example: 7891234567890
+        referencia:
+          type: string
+          example: REF-77
+        unidade:
+          type: string
+          example: UN
+        quantidade:
+          type: number
+          format: double
+          example: 10.0
+        endOrigem:
+          type: string
+          example: A-01-02
+        endDestino:
+          type: string
+          example: B-02-01
+        usuario:
+          type: string
+          example: OPERADOR
+        situacao:
+          type: string
+          example: Concluído
+        dtHrInicial:
+          type: string
+          example: "2026-08-01T10:00:00"
+        dtHrFinal:
+          type: string
+          example: "2026-08-01T10:15:00"
+
+    QuantidadeVolumesResponse:
+      type: object
+      properties:
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        quantidade:
+          type: integer
+          example: 4
+
+    GerarVolumesRequest:
+      type: object
+      required:
+        - nroConferencia
+        - quantidade
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 4001
+        quantidadeAtual:
+          type: integer
+          example: 0
+        quantidade:
+          type: integer
+          example: 4
+
+    GerarVolumesResponse:
+      type: object
+      properties:
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+        status:
+          type: string
+          example: "1"
+        mensagem:
+          type: string
+          example: Volumes gerados com sucesso.
+
+    EnviarDocaRequest:
+      type: object
+      required:
+        - nroConferencia
+        - nroNota
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 4001
+        nroNota:
+          type: integer
+          format: int64
+          example: 3001
+        ordemCarga:
+          type: integer
+          format: int64
+          example: 88
+
+    CancelarConferenciaRequest:
+      type: object
+      required:
+        - nroConferencia
+      properties:
+        nroConferencia:
+          type: integer
+          format: int64
+          example: 4001
+        codSit:
+          type: integer
+          example: 3
+
+    ImprimirVolumesRequest:
+      type: object
+      required:
+        - nroUnico
+        - nroSeparacao
+      properties:
+        nroUnico:
+          type: integer
+          format: int64
+          example: 2001
+        nroSeparacao:
+          type: integer
+          format: int64
+          example: 1001
+
+    ConferenciaActionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "1"
+        mensagem:
+          type: string
+          example: Conferência enviada para a doca com sucesso.

@@ -1,0 +1,65 @@
+https://jilles.me/cloudflare-workers-sveltekit-drizzle-and-d1-up-and-running/
+
+Janela Principal
+    - Aba (Expedicao de Mercadorias)
+        - Componente Filtros
+            - Botão Aplicar
+            - Botão Limpar Filtros
+            - Input Empresa
+            - Input Parceiro
+            - Input Data Inicial
+            - Input Data Final
+            - Input Nro Separacao
+            - Input Nro Unico
+            - Input Pedido/Nota
+            - Input Produto
+            - Input Situações
+        - Componente Separacao
+            - Titulo
+            - Badge Qtdade Separações
+            - Tabela Separacao
+                - Botao Gerar Volumes
+                - Botao Reimprimir Volumes
+            - Tabela Itens Separacao
+    - Aba (Divergencias)
+        - Componente Filtros
+            - Botão Aplicar
+            - Botão Limpar Filtros
+            - Input Empresa
+            - Input Conferente
+            - Input Data Inicial
+            - Input Data Final
+            - Input Nro Separacao
+            - Input Nro Unico
+        - Componente Divergencias
+            - Titulo
+            - Badge Qtdade Divergencias
+            - Tabela Divergencias
+        - Componente Itens Divergencia
+            - Titulo
+            - Badge Qtdade Itens Divergencia
+            - Botao Recontar
+            - Botao Cortar
+            - Botao Salvar
+            - Tabela Itens Divergencia
+
+Aba Divergencias
+-------------------------------------------------------
+Responsavel por exibir as Divergencias de conferecia de saida que ainda não foram tratadas no 
+sistema. Deve possuit um seção com os principais filtros no contexto da conferecia para trazer 
+as divergencias em aberto.
+Ações:
+    - Buscar Divergencias
+        Utilizando os filtros preenhidos deve buscar as divergencias em aberto no Sankhya e 
+        retornar o resultado da busca como uma lista de registros
+    - Limpar Filtros
+        Tem como objetivo limpar zerar ou limpar todos os filtros preenhidos pelo usuário.
+    - Buscar itens da Divergencia
+        Deve buscar os itens referentes a Divergencia selecionada na tabela de Divergencias.
+    - Salvar Tratativa da Divergencia
+        Deve enviar para o Sankhya os dados referente a tratativa informado pelo usuario na
+        tabela de itens da divergencia.
+    - Atualizar Divergencias
+        Deve buscar os dados atualizados das divergencias.
+
+        
